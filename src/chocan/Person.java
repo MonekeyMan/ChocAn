@@ -1,23 +1,20 @@
-// Person.java by Lindsey Bowen.
-//Provider and Member will inherit from this class.
-
 package chocan;
 
 public class Person {
     protected String firstName;
     protected String lastName;
-    protected String number;
+    protected String phoneNumber;
     protected String address;
     protected String city;
     protected String state;
     protected String zipCode;
 
     //Add getters setters and constructors
-    public Person(String firstName, String lastName, String number, String address, String city, String state, String zipCode)
+    public Person(String firstName, String lastName, String phoneNumber, String address, String city, String state, String zipCode)
     {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.number = number;
+        this.phoneNumber = phoneNumber;
         this.address = address;
         this.city = city;
         this.state = state;
@@ -30,8 +27,8 @@ public class Person {
     public String getLastName(){ return lastName;}
     public void setLastName(String lastName) {this.lastName = lastName;}
 
-    public String getNumber(){ return number;}
-    public void setNumber(String number) {this.number = number;}
+    public String getNumber(){ return phoneNumber;}
+    public void setNumber(String number) {this.phoneNumber = number;}
 
     public String getAddress(){ return address;}
     public void setAddress(String address){ this.address = address;}
