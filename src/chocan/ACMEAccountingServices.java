@@ -57,6 +57,7 @@ public class ACMEAccountingServices{
     	
     }
     
+
     public void addMember(String firstName, String lastName, String phoneNumber, String address, String city, String state, String zipCode, String email, String number) {
     	members.add(new Member(firstName, lastName, phoneNumber, address, city, state, zipCode, email, number));
     }
@@ -73,7 +74,7 @@ public class ACMEAccountingServices{
     	return suspendedMembers.toArray(new Member[suspendedMembers.size()]);
     }
     
-    public void suspendMember() {
+    public void suspendMember() { 
     	for(int i = 0; i < members.size(); i++) {
     		
     	}
