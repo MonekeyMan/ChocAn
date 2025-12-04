@@ -27,6 +27,10 @@ public class Provider extends Person {
         return providerNumber;
     }
     
+    public String getName() {
+        return firstName + " " + lastName;
+    }
+    
     public String returnInfo() {
     	return firstName + "_" + lastName + "_" + phoneNumber  + "_" + address  + "_" + city + "_" +  state  + "_" + zipCode;
     }

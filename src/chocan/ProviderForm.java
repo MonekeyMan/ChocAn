@@ -15,4 +15,6 @@ public class ProviderForm {
     public String getInfo() {
     	return name + "|" + number + "|" + hours + "|" + minutes + "|" + seconds + "|" + day + "|" + month + "|" + year  + "|" + fee;
     }
+
+    
 }

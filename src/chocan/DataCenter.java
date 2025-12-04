@@ -14,15 +14,20 @@ public class DataCenter extends readAndWritable{
     private Vector<ProviderForm> weeklyProviderForms;
     private Vector<MemberServiceReport> allMemberServiceReports;
     private Vector<ServiceRequest> pendingServiceRequest;
+    private Vector<ServiceRecord> serviceRecords = new Vector<>();
     
     public DataCenter() {
+    	Vector<Member> m = readMembers("members.txt");
+    	if (m != null) members = m;
     	
-    	members = readMembers("members.txt");
-    	suspendedMembers = readMembers("suspendedmembers.txt");
-    	providers = readProviders("provider.txt");
-    	managers = readManagers("manager.txt");
-    
-    }
+    	Vector<Member> sm = readMembers("suspendedmembers.txt");
+    	if (sm != null) suspendedMembers = sm;
+    	
+    	Vector<Provider> p = readProviders("provider.txt");
+    	if (p != null) providers = p;
+    	
+    	Vector<Manager> mg = readManagers("manager.txt");
+    	if (mg != null) managers = mg;    }
     
     public void saveInfo() {
     	
@@ -122,4 +127,31 @@ public class DataCenter extends readAndWritable{
 		return false;
     }
     
+    public java.util.List<ServiceRecord> getServiceRecordsForLastWeek() {
+        java.time.LocalDate oneWeekAgo = java.time.LocalDate.now().minusWeeks(1);
+        java.util.List<ServiceRecord> result = new java.util.ArrayList<>();
+        for (ServiceRecord sr : serviceRecords) {
+            if (sr.getServiceDate() != null && !sr.getServiceDate().isBefore(oneWeekAgo)) {
+                result.add(sr);
+            }
+        }
+        return result;
+    }
+    
+    public Provider getProviderByNumber(String providerNumber) {
+        for (Provider p : providers) {
+            if (p.getProviderNumber().equals(providerNumber)) {
+                return p;
+            }
+        }
+        return null;
+    }
+    
+    public void addServiceRecord(ServiceRecord record) {
+        serviceRecords.add(record);
+    }
+    
+    public void addProvider(String firstName, String lastName, String phoneNumber, String address, String city, String state, String zipCode, String number) {
+        providers.add(new Provider(firstName, lastName, phoneNumber, address, city, state, zipCode, number));
+    }
 }

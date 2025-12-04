@@ -17,4 +17,7 @@ public class Manager extends Person{
     	return firstName + "_" + lastName + "_" + phoneNumber  + "_" + address  + "_" + city + "_" +  state  + "_" + zipCode;
     }
 
+
+		
+
 }
