@@ -48,6 +48,23 @@ public abstract class readAndWritable {
         }
     }
     
+    protected void writeManager(String path, Vector<Manager> managers) {
+
+        try (FileWriter fw = new FileWriter(path, false);
+             BufferedWriter bw = new BufferedWriter(fw);
+             PrintWriter out = new PrintWriter(bw)) {
+        	
+        	for(int i = 0; i < managers.size(); i++) {
+
+        		out.println(managers.get(i).returnInfo());
+        	}
+
+        } catch (IOException e) {
+            System.err.println("Error writing to file: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
     protected Vector<Member> readMembers(String fileName){
     	
     	Vector<Member> members = new Vector<>();
@@ -76,7 +93,7 @@ public abstract class readAndWritable {
     	return null;
     }
     
-protected Vector<Provider> readProviders(String fileName){
+    protected Vector<Provider> readProviders(String fileName){
     	
     	Vector<Provider> provider = new Vector<>();
     	
@@ -104,6 +121,34 @@ protected Vector<Provider> readProviders(String fileName){
     	return null;
     }
     
+    protected Vector<Manager> readManagers(String fileName){
+    	
+    	Vector<Manager> manager = new Vector<>();
+    	
+    	try (InputStream input = readAndWritable.class.getResourceAsStream(fileName)) {
+            // Check if the input stream was found
+            if (input == null) {
+                System.out.println("Error 1: The file was not found in the same package.");
+                return null;
+            }
+
+            // Use Scanner to read the content line by line
+            Scanner scanner = new Scanner(input);
+            while (scanner.hasNextLine()) {
+            	manager.add(readManagerLine(scanner.nextLine()));
+            }
+            scanner.close();
+            
+            return manager;
+
+        } catch (IOException e) {
+            // Handle potential IO exceptions
+            e.printStackTrace();
+        }
+    	
+    	return null;
+    }
+    
     protected Member readMemberLine(String line) {
     	
     	String[] parts = line.split("_");
@@ -122,8 +167,21 @@ protected Vector<Provider> readProviders(String fileName){
     	String[] parts = line.split("_");
     	
     	if(parts.length == 7){
-    		Provider returnProvider = new Provider(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6]);
+    		Provider returnProvider = new Provider(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6], parts[7]);
     		return returnProvider;
+    	}
+		
+		return null;
+    	
+    }
+    
+    protected Manager readManagerLine(String line) {
+    	
+    	String[] parts = line.split("_");
+    	
+    	if(parts.length == 7){
+    		Manager returnManager = new Manager(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6], parts[7]);
+    		return returnManager;
     	}
 		
 		return null;
