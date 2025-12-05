@@ -189,5 +189,94 @@ public abstract class readAndWritable {
 		return null;
     	
     }
+    
+    // Written by Wheeler Knight on 12/4/2025 - Added ServiceRecord persistence
+    protected void writeServiceRecords(String path, Vector<ServiceRecord> records) {
+        try (FileWriter fw = new FileWriter(path, false);
+             BufferedWriter bw = new BufferedWriter(fw);
+             PrintWriter out = new PrintWriter(bw)) {
+        	
+        	for(int i = 0; i < records.size(); i++) {
+        		ServiceRecord sr = records.get(i);
+        		// Format: providerNumber_memberNumber_serviceCode_serviceFee_serviceDate
+        		String dateStr = sr.getServiceDate() != null ? sr.getServiceDate().toString() : "";
+        		out.println(sr.getProviderNumber() + "_" + sr.getMemberNumber() + "_" + 
+        		           sr.getServiceCode() + "_" + sr.getServiceFee() + "_" + dateStr);
+        	}
+
+        } catch (IOException e) {
+            System.err.println("Error writing service records to file: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+    
+    // Written by Wheeler Knight on 12/4/2025 - Added ServiceRecord reading
+    protected Vector<ServiceRecord> readServiceRecords(String fileName){
+    	Vector<ServiceRecord> records = new Vector<>();
+    	
+    	try (InputStream input = readAndWritable.class.getResourceAsStream(fileName)) {
+            if (input == null) {
+                return records; // Return empty vector if file doesn't exist
+            }
+
+            Scanner scanner = new Scanner(input);
+            while (scanner.hasNextLine()) {
+            	String line = scanner.nextLine().trim();
+            	if (!line.isEmpty()) {
+            		ServiceRecord sr = readServiceRecordLine(line);
+            		if (sr != null) records.add(sr);
+            	}
+            }
+            scanner.close();
+            
+            return records;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    	
+    	return records;
+    }
+    
+    // Written by Wheeler Knight on 12/4/2025 - Parse service record line
+    protected ServiceRecord readServiceRecordLine(String line) {
+    	String[] parts = line.split("_");
+    	
+    	if(parts.length >= 5){
+    		try {
+    			String providerNumber = parts[0];
+    			String memberNumber = parts[1];
+    			String serviceCode = parts[2];
+    			double serviceFee = Double.parseDouble(parts[3]);
+    			java.time.LocalDate serviceDate = null;
+    			if (!parts[4].isEmpty()) {
+    				serviceDate = java.time.LocalDate.parse(parts[4]);
+    			}
+    			return new ServiceRecord(providerNumber, memberNumber, serviceCode, serviceFee, serviceDate);
+    		} catch (Exception e) {
+    			System.err.println("Error parsing service record: " + line);
+    		}
+    	}
+		
+		return null;
+    }
+    
+    // Written by Wheeler Knight on 12/4/2025 - Added ServiceRequest persistence
+    protected void writeServiceRequests(String path, Vector<ServiceRequest> requests) {
+        try (FileWriter fw = new FileWriter(path, false);
+             BufferedWriter bw = new BufferedWriter(fw);
+             PrintWriter out = new PrintWriter(bw)) {
+        	
+        	for(int i = 0; i < requests.size(); i++) {
+        		ServiceRequest sr = requests.get(i);
+        		// Format: memberNumber_providerName_serviceType
+        		out.println(sr.member.getCard().getMemberNumber() + "_" + sr.providerName + "_" + sr.serviceType);
+        	}
+
+        } catch (IOException e) {
+            System.err.println("Error writing service requests to file: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
 }

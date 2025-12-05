@@ -90,7 +90,7 @@
 ## Medium Priority Features 🟡
 
 ### Service Request Workflow
-- [ ] **Implement actual service approval logic** (Terminal.java)
+- [x] **Implement actual service approval logic** (Terminal.java) ✅
   - When provider clicks "Approve":
     - Create a ServiceRecord
     - Add to DataCenter.serviceRecords
@@ -100,7 +100,7 @@
     - Optionally notify member
 
 ### Data Persistence
-- [ ] **Add ServiceRecord persistence**
+- [x] **Add ServiceRecord persistence** ✅
   - Create `readServiceRecords()` method in readAndWritable
   - Create `writeServiceRecords()` method in readAndWritable
   - Add service records file (e.g., `servicerecords.txt`)
@@ -110,16 +110,16 @@
   - Create read/write methods for provider forms
   - Store weekly forms for reporting
 
-- [ ] **Add ServiceRequest persistence**
+- [x] **Add ServiceRequest persistence** ✅ (partial - write method added)
   - Save pending requests between sessions
   - Utilize existing `servicerequest.txt` file
 
 ### User Management
-- [ ] **Add UI for creating new Members**
+- [x] **Add UI for creating new Members** ✅
   - Manager should be able to add members
   - Form with all required fields
   
-- [ ] **Add UI for creating new Providers**
+- [x] **Add UI for creating new Providers** ✅
   - Manager should be able to add providers
   
 - [ ] **Add UI for editing/deleting users**

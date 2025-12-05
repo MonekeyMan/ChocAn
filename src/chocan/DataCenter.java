@@ -28,15 +28,22 @@ public class DataCenter extends readAndWritable{
     	if (p != null) providers = p;
     	
     	Vector<Manager> mg = readManagers("manager.txt");
-    	if (mg != null) managers = mg;    }
+    	if (mg != null) managers = mg;
+    	
+    	// Written by Wheeler Knight on 12/4/2025 - Load service records from file
+    	Vector<ServiceRecord> sr = readServiceRecords("servicerecords.txt");
+    	if (sr != null) serviceRecords = sr;
+    }
     
     // Edited by Wheeler Knight on 12/4/2025 - Fixed file path to match read operations (provider.txt not providers.txt)
+    // Edited by Wheeler Knight on 12/4/2025 - Added service records persistence
     public void saveInfo() {
     	
     	 writeInfo("members.txt");
     	 writeInfo("suspendedmembers.txt");
     	 writeInfo("provider.txt");
     	 writeInfo("manager.txt");
+    	 writeInfo("servicerecords.txt");
     	 
     }
     
@@ -56,6 +63,11 @@ public class DataCenter extends readAndWritable{
     	}
     	if(fileName.equals("suspendedmembers.txt")) {
     		writeMember("src/chocan/" + fileName, suspendedMembers);
+    	}
+    	
+    	// Written by Wheeler Knight on 12/4/2025 - Added service records persistence
+    	if(fileName.equals("servicerecords.txt")) {
+    		writeServiceRecords("src/chocan/" + fileName, serviceRecords);
     	}
     	
     }
@@ -108,6 +120,13 @@ public class DataCenter extends readAndWritable{
     
     public void addPendingServiceRequest(Member member, String providerName, String serviceType) {
     	pendingServiceRequest.add(new ServiceRequest(member, providerName, serviceType));
+    }
+    
+    // Written by Wheeler Knight on 12/4/2025 - Added method to remove service requests after approval/decline
+    public void removePendingServiceRequest(int index) {
+    	if (index >= 0 && index < pendingServiceRequest.size()) {
+    		pendingServiceRequest.remove(index);
+    	}
     }
     
     // Edited by Wheeler Knight on 12/4/2025 - Fixed string comparisons to use .equals() instead of ==

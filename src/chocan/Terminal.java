@@ -161,20 +161,64 @@ public class Terminal extends JFrame{
         
         requestApprovalScreen.add(checkCardButton);
         
+        // Written by Wheeler Knight on 12/4/2025 - Implemented service approval logic
         JButton approveButton = new JButton("Approve");
         approveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Get pending requests for this provider
+                ServiceRequest[] requests = sys.getPendingServiceRequest();
+                if (requests != null && requests.length > 0 && currProvider != null) {
+                    // Find first request for this provider
+                    for (int i = 0; i < requests.length; i++) {
+                        ServiceRequest req = requests[i];
+                        if (req != null && req.providerName.equals(currProvider.getFullName())) {
+                            // Create a ServiceRecord for the approved service
+                            String serviceCode = "1"; // Default to CONSULTATION
+                            for (int j = 0; j < sys.SERVICE_NAMES.length; j++) {
+                                if (sys.SERVICE_NAMES[j].equals(req.serviceType)) {
+                                    serviceCode = String.valueOf(j + 1);
+                                    break;
+                                }
+                            }
+                            double fee = sys.getServiceFeeByCode(Integer.parseInt(serviceCode));
+                            ServiceRecord record = new ServiceRecord(
+                                currProvider.getProviderNumber(),
+                                req.member.getCard().getMemberNumber(),
+                                serviceCode,
+                                fee,
+                                java.time.LocalDate.now()
+                            );
+                            sys.addServiceRecord(record);
+                            sys.removePendingServiceRequest(i);
+                            JOptionPane.showMessageDialog(Terminal.this, "Service approved and recorded!", "Approved", JOptionPane.INFORMATION_MESSAGE);
+                            break;
+                        }
+                    }
+                }
                 swapInterface(providerScreen);
             }
         });
         
         requestApprovalScreen.add(approveButton);
         
+        // Written by Wheeler Knight on 12/4/2025 - Implemented service decline logic
         JButton declineButton = new JButton("Decline");
         declineButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Get pending requests for this provider and remove
+                ServiceRequest[] requests = sys.getPendingServiceRequest();
+                if (requests != null && requests.length > 0 && currProvider != null) {
+                    for (int i = 0; i < requests.length; i++) {
+                        ServiceRequest req = requests[i];
+                        if (req != null && req.providerName.equals(currProvider.getFullName())) {
+                            sys.removePendingServiceRequest(i);
+                            JOptionPane.showMessageDialog(Terminal.this, "Service request declined.", "Declined", JOptionPane.INFORMATION_MESSAGE);
+                            break;
+                        }
+                    }
+                }
                 swapInterface(providerScreen);
             }
         });
@@ -276,6 +320,97 @@ public class Terminal extends JFrame{
             }
         });
         managerScreen.add(viewAllProvidersButton);
+        
+        // Written by Wheeler Knight on 12/4/2025 - Add Member UI
+        JButton addMemberButton = new JButton("Add New Member");
+        addMemberButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Create input dialog for new member
+                JTextField firstNameField = new JTextField();
+                JTextField lastNameField = new JTextField();
+                JTextField phoneField = new JTextField();
+                JTextField addressField = new JTextField();
+                JTextField cityField = new JTextField();
+                JTextField stateField = new JTextField();
+                JTextField zipField = new JTextField();
+                JTextField emailField = new JTextField();
+                JTextField numberField = new JTextField();
+                
+                Object[] fields = {
+                    "First Name:", firstNameField,
+                    "Last Name:", lastNameField,
+                    "Phone:", phoneField,
+                    "Address:", addressField,
+                    "City:", cityField,
+                    "State:", stateField,
+                    "Zip Code:", zipField,
+                    "Email:", emailField,
+                    "Member Number:", numberField
+                };
+                
+                int result = JOptionPane.showConfirmDialog(Terminal.this, fields, "Add New Member", JOptionPane.OK_CANCEL_OPTION);
+                if (result == JOptionPane.OK_OPTION) {
+                    sys.addMember(
+                        firstNameField.getText().trim(),
+                        lastNameField.getText().trim(),
+                        phoneField.getText().trim(),
+                        addressField.getText().trim(),
+                        cityField.getText().trim(),
+                        stateField.getText().trim(),
+                        zipField.getText().trim(),
+                        emailField.getText().trim(),
+                        numberField.getText().trim()
+                    );
+                    JOptionPane.showMessageDialog(Terminal.this, "Member added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+        managerScreen.add(addMemberButton);
+        
+        // Written by Wheeler Knight on 12/4/2025 - Add Provider UI
+        JButton addProviderButton = new JButton("Add New Provider");
+        addProviderButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Create input dialog for new provider
+                JTextField firstNameField = new JTextField();
+                JTextField lastNameField = new JTextField();
+                JTextField phoneField = new JTextField();
+                JTextField addressField = new JTextField();
+                JTextField cityField = new JTextField();
+                JTextField stateField = new JTextField();
+                JTextField zipField = new JTextField();
+                JTextField numberField = new JTextField();
+                
+                Object[] fields = {
+                    "First Name:", firstNameField,
+                    "Last Name:", lastNameField,
+                    "Phone:", phoneField,
+                    "Address:", addressField,
+                    "City:", cityField,
+                    "State:", stateField,
+                    "Zip Code:", zipField,
+                    "Provider Number:", numberField
+                };
+                
+                int result = JOptionPane.showConfirmDialog(Terminal.this, fields, "Add New Provider", JOptionPane.OK_CANCEL_OPTION);
+                if (result == JOptionPane.OK_OPTION) {
+                    sys.addProvider(
+                        firstNameField.getText().trim(),
+                        lastNameField.getText().trim(),
+                        phoneField.getText().trim(),
+                        addressField.getText().trim(),
+                        cityField.getText().trim(),
+                        stateField.getText().trim(),
+                        zipField.getText().trim(),
+                        numberField.getText().trim()
+                    );
+                    JOptionPane.showMessageDialog(Terminal.this, "Provider added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        });
+        managerScreen.add(addProviderButton);
         
         //Manager screen end
         
