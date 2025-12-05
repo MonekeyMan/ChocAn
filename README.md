@@ -206,12 +206,12 @@ The system uses underscore-delimited text files for persistent storage:
 
 ## Contributors
 
-- **Lindsey B.** - Person class, Member class, MemberCard class
+- **Lindsey Bowen** - Person class, Member class, MemberCard class
 - **Wheeler Knight** - Provider methods (checkCard, fillForm, EnterPassword, RequestProviderDirectory), Manager methods (RequestServiceReport, RequestSummaryReport), Member RequestHealthService, ACMEAccountingServices methods, MemberServiceReport, SummaryReport classes
 -- **Rossy Hollinger**
 -- **Dylan Stokes**
 -- **Logan Hernandez**
--- **Esmeralda Gomez**
+-- **Esmeralda Macario** - Manager Class, MemberServiceReport Class, Provider Class
 
 
 ---
