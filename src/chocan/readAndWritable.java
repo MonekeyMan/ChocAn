@@ -77,9 +77,14 @@ public abstract class readAndWritable {
             }
 
             // Use Scanner to read the content line by line
+            // Edited by Wheeler Knight on 12/4/2025 - Skip null entries from empty lines
             Scanner scanner = new Scanner(input);
             while (scanner.hasNextLine()) {
-            	members.add(readMemberLine(scanner.nextLine()));
+            	String line = scanner.nextLine().trim();
+            	if (!line.isEmpty()) {
+            		Member m = readMemberLine(line);
+            		if (m != null) members.add(m);
+            	}
             }
             scanner.close();
             
@@ -105,9 +110,14 @@ public abstract class readAndWritable {
             }
 
             // Use Scanner to read the content line by line
+            // Edited by Wheeler Knight on 12/4/2025 - Skip null entries from empty lines
             Scanner scanner = new Scanner(input);
             while (scanner.hasNextLine()) {
-            	provider.add(readProviderLine(scanner.nextLine()));
+            	String line = scanner.nextLine().trim();
+            	if (!line.isEmpty()) {
+            		Provider p = readProviderLine(line);
+            		if (p != null) provider.add(p);
+            	}
             }
             scanner.close();
             
@@ -133,9 +143,14 @@ public abstract class readAndWritable {
             }
 
             // Use Scanner to read the content line by line
+            // Edited by Wheeler Knight on 12/4/2025 - Skip null entries from empty lines
             Scanner scanner = new Scanner(input);
             while (scanner.hasNextLine()) {
-            	manager.add(readManagerLine(scanner.nextLine()));
+            	String line = scanner.nextLine().trim();
+            	if (!line.isEmpty()) {
+            		Manager m = readManagerLine(line);
+            		if (m != null) manager.add(m);
+            	}
             }
             scanner.close();
             
