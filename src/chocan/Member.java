@@ -11,6 +11,11 @@ public class Member extends Person {
     private String email;  //
     private MemberCard memberCard; //let all members have object member card
 
+    // Default constructor for Gson deserialization - Wheeler Knight 12/5/2025
+    public Member() {
+        super();
+    }
+
     public Member(String firstName, String lastName, String phoneNumber, String address, String city, String state, String zipCode, String email, String number)
     {
         super(firstName, lastName, phoneNumber, address, city, state, zipCode);

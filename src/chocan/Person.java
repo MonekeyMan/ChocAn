@@ -17,6 +17,9 @@ public class Person {
     protected String zipCode;
     // Removed unused idNumber field - Wheeler Knight 12/4/2025
 
+    // Default constructor for Gson deserialization - Wheeler Knight 12/5/2025
+    public Person() {}
+
     //Add getters setters and constructors
     public Person(String firstName, String lastName, String phoneNumber, String address, String city, String state, String zipCode)
     {

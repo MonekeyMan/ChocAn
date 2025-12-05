@@ -9,6 +9,9 @@ public class ServiceRecord {
     private double serviceFee;
     private LocalDate serviceDate;
 
+    // Default constructor for Gson deserialization - Wheeler Knight 12/5/2025
+    public ServiceRecord() {}
+
     public ServiceRecord(String providerNumber, String memberNumber, String serviceCode, double serviceFee, LocalDate serviceDate) {
         this.providerNumber = providerNumber;
         this.memberNumber = memberNumber;

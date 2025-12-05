@@ -1,0 +1,33 @@
+[
+  {
+    "email": "JonDoe123@gmail.com",
+    "memberCard": {
+      "memberFirstName": "Jon",
+      "memberLastName": "doe",
+      "memberNumber": "1"
+    },
+    "firstName": "Jon",
+    "lastName": "doe",
+    "phoneNumber": "(333)-333-3333",
+    "address": "123street",
+    "city": "Tuscaloosa",
+    "state": "Alabama",
+    "zipCode": "35405"
+  },
+  {
+    "email": "JaneDoe123@gmail.com",
+    "memberCard": {
+      "memberFirstName": "Jane",
+      "memberLastName": "doe",
+      "memberNumber": "2"
+    },
+    "firstName": "Jane",
+    "lastName": "doe",
+    "phoneNumber": "(333)-333-3333",
+    "address": "123street",
+    "city": "Tuscaloosa",
+    "state": "Alabama",
+    "zipCode": "35405"
+  }
+]
+

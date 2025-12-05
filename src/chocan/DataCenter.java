@@ -17,59 +17,55 @@ public class DataCenter extends readAndWritable{
     private Vector<ServiceRequest> pendingServiceRequest = new Vector<>();
     private Vector<ServiceRecord> serviceRecords = new Vector<>();
     
+    // Edited by Wheeler Knight on 12/5/2025 - Switched to JSON file format using Gson
     public DataCenter() {
-    	Vector<Member> m = readMembers("members.txt");
+    	Vector<Member> m = readMembers("members.json");
     	if (m != null) members = m;
     	
-    	Vector<Member> sm = readMembers("suspendedmembers.txt");
+    	Vector<Member> sm = readMembers("suspendedmembers.json");
     	if (sm != null) suspendedMembers = sm;
     	
-    	Vector<Provider> p = readProviders("provider.txt");
+    	Vector<Provider> p = readProviders("providers.json");
     	if (p != null) providers = p;
     	
-    	Vector<Manager> mg = readManagers("manager.txt");
+    	Vector<Manager> mg = readManagers("managers.json");
     	if (mg != null) managers = mg;
     	
-    	// Written by Wheeler Knight on 12/4/2025 - Load service records from file
-    	Vector<ServiceRecord> sr = readServiceRecords("servicerecords.txt");
+    	// Load service records from JSON file
+    	Vector<ServiceRecord> sr = readServiceRecords("servicerecords.json");
     	if (sr != null) serviceRecords = sr;
     }
     
-    // Edited by Wheeler Knight on 12/4/2025 - Fixed file path to match read operations (provider.txt not providers.txt)
-    // Edited by Wheeler Knight on 12/4/2025 - Added service records persistence
+    // Edited by Wheeler Knight on 12/5/2025 - Switched to JSON file format using Gson
     public void saveInfo() {
-    	
-    	 writeInfo("members.txt");
-    	 writeInfo("suspendedmembers.txt");
-    	 writeInfo("provider.txt");
-    	 writeInfo("manager.txt");
-    	 writeInfo("servicerecords.txt");
-    	 
+    	 writeInfo("members.json");
+    	 writeInfo("suspendedmembers.json");
+    	 writeInfo("providers.json");
+    	 writeInfo("managers.json");
+    	 writeInfo("servicerecords.json");
     }
     
-    // Edited by Wheeler Knight on 12/4/2025 - Fixed string comparisons to use .equals() instead of ==
+    // Edited by Wheeler Knight on 12/5/2025 - Moved JSON storage to database/ folder
     public void writeInfo(String fileName) {
-    	
-    	if(fileName.equals("members.txt")) {
-    		writeMember("src/chocan/" + fileName, members);
+    	if(fileName.equals("members.json")) {
+    		writeMember(fileName, members);
     	}
     	
-    	if(fileName.equals("provider.txt")) {
-    		writeProvider("src/chocan/" + fileName, providers);	
+    	if(fileName.equals("providers.json")) {
+    		writeProvider(fileName, providers);	
     	}
     	
-    	if(fileName.equals("manager.txt")) {
-    		writeManager("src/chocan/" + fileName, managers);	
-    	}
-    	if(fileName.equals("suspendedmembers.txt")) {
-    		writeMember("src/chocan/" + fileName, suspendedMembers);
+    	if(fileName.equals("managers.json")) {
+    		writeManager(fileName, managers);	
     	}
     	
-    	// Written by Wheeler Knight on 12/4/2025 - Added service records persistence
-    	if(fileName.equals("servicerecords.txt")) {
-    		writeServiceRecords("src/chocan/" + fileName, serviceRecords);
+    	if(fileName.equals("suspendedmembers.json")) {
+    		writeMember(fileName, suspendedMembers);
     	}
     	
+    	if(fileName.equals("servicerecords.json")) {
+    		writeServiceRecords(fileName, serviceRecords);
+    	}
     }
     
     public Member[] getMembers() {

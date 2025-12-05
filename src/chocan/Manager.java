@@ -4,6 +4,11 @@ public class Manager extends Person{
 	
 	private String managerNumber;
 
+	// Default constructor for Gson deserialization - Wheeler Knight 12/5/2025
+	public Manager() {
+		super();
+	}
+
 	public Manager(String firstName, String lastName, String phoneNumber, String address, String city, String state,String zipCode, String number) {
 		super(firstName, lastName, phoneNumber, address, city, state, zipCode);
 		managerNumber = number;

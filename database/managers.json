@@ -1,0 +1,13 @@
+[
+  {
+    "managerNumber": "M001",
+    "firstName": "Admin",
+    "lastName": "User",
+    "phoneNumber": "555-555-9999",
+    "address": "100 Admin St",
+    "city": "Tuscaloosa",
+    "state": "Alabama",
+    "zipCode": "35405"
+  }
+]
+

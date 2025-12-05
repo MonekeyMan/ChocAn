@@ -6,6 +6,11 @@ public class Provider extends Person {
 	
 	private String providerNumber;
 	private String password;
+
+    // Default constructor for Gson deserialization - Wheeler Knight 12/5/2025
+    public Provider() {
+        super();
+    }
 	
     public Provider(String firstName, String lastName, String phoneNumber, String address, String city, String state, String zipCode, String number)
     {

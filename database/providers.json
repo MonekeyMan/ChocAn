@@ -1,0 +1,13 @@
+[
+  {
+    "providerNumber": "P001",
+    "firstName": "Dr",
+    "lastName": "Smith",
+    "phoneNumber": "555-555-1234",
+    "address": "123 Medical Dr",
+    "city": "Birmingham",
+    "state": "Alabama",
+    "zipCode": "35201"
+  }
+]
+
