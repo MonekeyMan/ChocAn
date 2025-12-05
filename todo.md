@@ -1,3 +1,3 @@
-- Member
+
 - Manager
 - ACME Accounting Services

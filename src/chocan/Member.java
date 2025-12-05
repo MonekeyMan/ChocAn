@@ -19,15 +19,34 @@ public class Member extends Person {
         return firstName + "_" + lastName + "_" + phoneNumber + "_" + address + "_" + city + "_" + state + "_" + zipCode
                 + "_" + email + "_" + memberCard.getMemberNumber();
     }
-    
-    public MemberCard GetCard() {
-        return memberCard;
-    }
 
+    /**
+     * The member requests a health service from a provider and service of their choosing.
+     * This prompts the member to select a provider and the type of service requested.
+     * Then, it creates a ServiceRequest and (optionally) appends it to a request queue.
+     * Written by Wheeler Knight 12/04/2025
+     */
     public void RequestHealthService() {
-        /*
-        The member requests a health service from a provider and service of their choosing */
+        java.util.Scanner scanner = new java.util.Scanner(System.in);
 
+        // Prompt for provider name (In real case, might query available providers from DataCenter)
+        System.out.println("=== Request Health Service ===");
+        System.out.print("Enter the provider's name: ");
+        String providerName = scanner.nextLine().trim();
+
+        // Prompt for service type (In real case, display available services from ProviderDirectory)
+        System.out.print("Enter the type of service: ");
+        String serviceType = scanner.nextLine().trim();
+
+        // Create service request
+        ServiceRequest request = new ServiceRequest(this, providerName, serviceType);
+
+        System.out.println("Service request created:");
+        System.out.println("  Member Number: " + this.getCard().getMemberNumber());
+        System.out.println("  Provider: " + providerName);
+        System.out.println("  Service Type: " + serviceType);
+
+        // Typically, you'd add the request to a queue or notify the system:
+        // DataCenter.getInstance().addServiceRequest(request); // example only
     }
-
 }
