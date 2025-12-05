@@ -26,8 +26,8 @@ public class ACMEAccountingServices{
     	return suspendedMembers;
     }
     
-    public void setSuspendedMembers(Member[] members) {
-    	this.members = members;
+    public void setSuspendedMembers(Member[] suspendedMembers) {
+    	this.suspendedMembers = suspendedMembers;
     }
     
     public void suspendMember(String number) {

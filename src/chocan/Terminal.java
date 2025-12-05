@@ -95,7 +95,7 @@ public class Terminal extends JFrame{
         Provider[] providers = sys.getProviders();
         String[] providerNames = new String[providers.length];
         for(int i = 0; i < providers.length; i++) {
-        	providerNames[i] = providers[i].getFirstName() + providers[i].getFirstName();
+        	providerNames[i] = providers[i].getFirstName() + " " + providers[i].getLastName();
         }
         JComboBox<String> providerBox = new JComboBox<>(providerNames);
         
@@ -135,16 +135,7 @@ public class Terminal extends JFrame{
         memberScreen.add(MemberLogoutButton);
         memberScreen.add(serviceRequestButton);
         
-        JLabel status = new JLabel();
-        
-        int serviceReportCount = fetchServiceReportCount(currMember);
-        if(serviceReportCount == 0) {
-        	status.setText("No Fees!");
-        }
-        else {
-        	status.setText(accumulateFees(currMember));
-        }
-        
+        JLabel status = new JLabel("No Fees!");
         memberScreen.add(status);
         
         //Member screen end
@@ -211,16 +202,7 @@ public class Terminal extends JFrame{
         
         providerScreen.add(approveRequestButton);
         
-        JLabel pendingServiceRequest = new JLabel();
-        
-        int ServiceRequestCount = fetchServiceRequestCount(currProvider);
-        if(ServiceRequestCount == 0) {
-        	pendingServiceRequest.setText("No Request!");
-        }
-        else {
-        	pendingServiceRequest.setText(accumulateRequest(currProvider));
-        }
-        
+        JLabel pendingServiceRequest = new JLabel("No Request!");
         providerScreen.add(pendingServiceRequest);
         
         

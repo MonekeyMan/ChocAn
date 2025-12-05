@@ -11,19 +11,19 @@
 ## Critical Bug Fixes 🔴
 
 ### DataCenter.java
-- [ ] **Fix string comparisons in `writeInfo()` method** (lines 43-57)
+- [x] **Fix string comparisons in `writeInfo()` method** (lines 43-57) ✅
   - Change `if(fileName == "members.txt")` to `if(fileName.equals("members.txt"))`
   - Same for all other string comparisons in this method
   
-- [ ] **Fix string comparisons in validation methods** (lines 110-128)
+- [x] **Fix string comparisons in validation methods** (lines 110-128) ✅
   - `validMember()`, `validProvider()`, `validManager()` all use `==` for strings
   
-- [ ] **Fix file path inconsistency**
+- [x] **Fix file path inconsistency** ✅
   - Reading from `"provider.txt"` but writing to `"providers.txt"`
   - Decide on one naming convention and update both read/write operations
   - Same issue with `"manager.txt"` vs `"managers.txt"`
 
-- [ ] **Initialize Vector fields in constructor**
+- [x] **Initialize Vector fields in constructor** ✅
   ```java
   private Vector<ProviderForm> weeklyProviderForms = new Vector<>();
   private Vector<MemberServiceReport> allMemberServiceReports = new Vector<>();
@@ -31,22 +31,22 @@
   ```
 
 ### readAndWritable.java
-- [ ] **Fix `readProviderLine()` array bounds error** (line 169)
+- [x] **Fix `readProviderLine()` array bounds error** (line 169) ✅
   - Change `parts.length == 7` to `parts.length == 8`
   
-- [ ] **Fix `readManagerLine()` array bounds error** (line 182)
+- [x] **Fix `readManagerLine()` array bounds error** (line 182) ✅
   - Change `parts.length == 7` to `parts.length == 8`
 
 ### Terminal.java
-- [ ] **Fix provider name typo** (line 98)
+- [x] **Fix provider name typo** (line 98) ✅
   - Change `providers[i].getFirstName() + providers[i].getFirstName()` 
   - To `providers[i].getFirstName() + " " + providers[i].getLastName()`
 
-- [ ] **Fix NullPointerException in constructor** (lines 140-146, 216-222)
+- [x] **Fix NullPointerException in constructor** (lines 140-146, 216-222) ✅
   - Move `fetchServiceReportCount()` and `fetchServiceRequestCount()` calls to after login
 
 ### ACMEAccountingServices.java
-- [ ] **Fix `setSuspendedMembers()` method** (line 30)
+- [x] **Fix `setSuspendedMembers()` method** (line 30) ✅
   - Change `this.members = members` to `this.suspendedMembers = members`
 
 ---

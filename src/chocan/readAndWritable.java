@@ -166,7 +166,7 @@ public abstract class readAndWritable {
     	
     	String[] parts = line.split("_");
     	
-    	if(parts.length == 7){
+    	if(parts.length == 8){
     		Provider returnProvider = new Provider(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6], parts[7]);
     		return returnProvider;
     	}
@@ -179,7 +179,7 @@ public abstract class readAndWritable {
     	
     	String[] parts = line.split("_");
     	
-    	if(parts.length == 7){
+    	if(parts.length == 8){
     		Manager returnManager = new Manager(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6], parts[7]);
     		return returnManager;
     	}

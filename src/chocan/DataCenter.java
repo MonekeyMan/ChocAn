@@ -11,9 +11,9 @@ public class DataCenter extends readAndWritable{
     private Vector<Provider> providers = new Vector<>();
     private Vector<Manager> managers = new Vector<>();
 
-    private Vector<ProviderForm> weeklyProviderForms;
-    private Vector<MemberServiceReport> allMemberServiceReports;
-    private Vector<ServiceRequest> pendingServiceRequest;
+    private Vector<ProviderForm> weeklyProviderForms = new Vector<>();
+    private Vector<MemberServiceReport> allMemberServiceReports = new Vector<>();
+    private Vector<ServiceRequest> pendingServiceRequest = new Vector<>();
     private Vector<ServiceRecord> serviceRecords = new Vector<>();
     
     public DataCenter() {
@@ -33,7 +33,7 @@ public class DataCenter extends readAndWritable{
     	
     	 writeInfo("members.txt");
     	 writeInfo("suspendedmembers.txt");
-    	 writeInfo("providers.txt");
+    	 writeInfo("provider.txt");
     	 writeInfo("manager.txt");
     	 
     }
@@ -44,7 +44,7 @@ public class DataCenter extends readAndWritable{
     		writeMember("src/chocan/" + fileName, members);
     	}
     	
-    	if(fileName.equals("providers.txt")) {
+    	if(fileName.equals("provider.txt")) {
     		writeProvider("src/chocan/" + fileName, providers);	
     	}
     	
