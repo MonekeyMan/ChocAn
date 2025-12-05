@@ -28,10 +28,7 @@ public class ProviderForm {
 
     private String comments;
 
-    // No-arg constructor
-    public ProviderForm() {}
-
-    // Constructor with all fields
+    // Constructor
     public ProviderForm(byte hours, byte minutes, byte seconds, byte day, byte month, short year, String providerName, String providerNumber, String memberName, String memberNumber, String serviceCode, String serviceName, double fee, String comments)
     {
         this.hours = hours;
@@ -50,57 +47,19 @@ public class ProviderForm {
         this.comments = comments;
     }
 
-    // Getters and Setters
-    public byte getHours() { return hours; }
-    public void setHours(byte hours) { this.hours = hours; }
-
-    public byte getMinutes() { return minutes; }
-    public void setMinutes(byte minutes) { this.minutes = minutes; }
-
-    public byte getSeconds() { return seconds; }
-    public void setSeconds(byte seconds) { this.seconds = seconds; }
-
-    public byte getDay() { return day; }
-    public void setDay(byte day) { this.day = day; }
-
-    public byte getMonth() { return month; }
-    public void setMonth(byte month) { this.month = month; }
-
-    public short getYear() { return year; }
-    public void setYear(short year) { this.year = year; }
-
-    public String getNumber() { return number; }
-    public void setNumber(String number) { this.number = number; }
-
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-
-    public double getFee() { return fee; }
-    public void setFee(double fee) { this.fee = fee; }
-
-    public String getMemberName() { return memberName; }
-    public void setMemberName(String memberName) { this.memberName = memberName; }
-
-    public String getMemberNumber() { return memberNumber; }
-    public void setMemberNumber(String memberNumber) { this.memberNumber = memberNumber; }
-
-    public String getProviderName() { return providerName; }
-    public void setProviderName(String providerName) { this.providerName = providerName; }
-
-    public String getProviderNumber() { return providerNumber; }
-    public void setProviderNumber(String providerNumber) { this.providerNumber = providerNumber; }
-
-    public String getServiceCode() { return serviceCode; }
-    public void setServiceCode(String serviceCode) { this.serviceCode = serviceCode; }
-
-    public String getServiceName() { return serviceName; }
-    public void setServiceName(String serviceName) { this.serviceName = serviceName; }
-
-    public String getComments() { return comments; }
-    public void setComments(String comments) { this.comments = comments; }
-
+    //GetHours() etc
+    // TODO: Finish all getters and setters
     public String getInfo() {
-        return name + "|" + number + "|" + hours + "|" + minutes + "|" + seconds + "|" + day + "|" + month + "|" + year
-                + "|" + fee;
+    	return name + "|" + number + "|" + hours + "|" + minutes + "|" + seconds + "|" + day + "|" + month + "|" + year  + "|" + fee;
+    }
+    
+    public String getMemberName()
+    {
+        return memberName;
+    }
+
+    public double getFee()
+    {
+        return fee;
     }
 }
